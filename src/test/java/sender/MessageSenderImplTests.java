@@ -59,19 +59,21 @@ public class MessageSenderImplTests {
     }
 
     @Test
-    void test_send_all_localhost() {
+    void test_send_brazil() {
+
+        String brazilIp = "177.207.208.35";
 
         String expected = "Welcome";
 
         GeoServiceImpl geoService = Mockito.mock(GeoServiceImpl.class);
-        Mockito.when(geoService.byIp(Mockito.anyString())).thenReturn(new Location("New York", Country.USA,
-                null, 0));
+        Mockito.when(geoService.byIp(Mockito.anyString())).thenReturn(new Location("Sao Jose", Country.BRAZIL,
+                "Rua Maria Bernardina", 117));
 
         LocalizationServiceImpl localizationService = Mockito.mock(LocalizationServiceImpl.class);
         Mockito.when(localizationService.locale(Mockito.any(Country.class))).thenReturn("Welcome");
 
         Map<String, String> headers = new HashMap<>();
-        headers.put(MessageSenderImpl.IP_ADDRESS_HEADER, GeoServiceImpl.LOCALHOST);
+        headers.put(MessageSenderImpl.IP_ADDRESS_HEADER, brazilIp);
 
         MessageSenderImpl messageSender = new MessageSenderImpl(geoService, localizationService);
 

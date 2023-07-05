@@ -38,6 +38,9 @@ public class GeoServiceImplTests {
 
         // assert
         assertEquals(expected.getCountry(), result.getCountry());
+        assertEquals(expected.getCity(), result.getCity());
+        assertEquals(expected.getStreet(), result.getStreet());
+        assertEquals(expected.getBuiling(), result.getBuiling());
     }
 
     public static Stream<Arguments> test_byIp() {
